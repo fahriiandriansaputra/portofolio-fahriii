@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Fahri Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:
+  radial-gradient(circle at top right,#123d66 0%,transparent 25%),
+  radial-gradient(circle at bottom left,#0d2b4d 0%,transparent 25%),
+  linear-gradient(to bottom,#020814,#041426,#071b33);
+  color:white;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* SMOOTH 120HZ */
+
+html{
+  scroll-behavior:smooth;
+}
+
+/* ANIMATED BACKGROUND */
+
+.bg-animation{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:-5;
+  overflow:hidden;
+}
+
+.bg-animation span{
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(120,190,255,.25);
+  animation:rotate 16s linear infinite;
+}
+
+.bg-animation span:nth-child(1){
+  width:500px;
+  height:500px;
+  top:-200px;
+  right:-100px;
+}
+
+.bg-animation span:nth-child(2){
+  width:700px;
+  height:700px;
+  bottom:-300px;
+  left:-200px;
+  animation-duration:24s;
+}
+
+.bg-animation span:nth-child(3){
+  width:350px;
+  height:350px;
+  top:40%;
+  left:60%;
+  animation-duration:18s;
+}
+
+@keyframes rotate{
+  from{
+    transform:rotate(0deg) scale(1);
+  }
+  50%{
+    transform:rotate(180deg) scale(1.1);
+  }
+  to{
+    transform:rotate(360deg) scale(1);
+  }
+}
+
+/* MOVING LINES */
+
+.lines{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:-4;
+  overflow:hidden;
+}
+
+.lines span{
+  position:absolute;
+  width:2px;
+  height:100%;
+  background:
+  linear-gradient(
+  to bottom,
+  transparent,
+  rgba(120,190,255,.9),
+  transparent
+  );
+
+  animation:moveLine 8s linear infinite;
+}
+
+.lines span:nth-child(1){ left:10%; }
+.lines span:nth-child(2){ left:30%; animation-delay:2s; }
+.lines span:nth-child(3){ left:50%; animation-delay:4s; }
+.lines span:nth-child(4){ left:70%; animation-delay:1s; }
+.lines span:nth-child(5){ left:90%; animation-delay:3s; }
+
+@keyframes moveLine{
+
+  0%{
+    transform:translateY(-100%);
+    opacity:0;
+  }
+
+  50%{
+    opacity:1;
+  }
+
+  100%{
+    transform:translateY(100%);
+    opacity:0;
+  }
+
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#59b6ff;
+  border-radius:30px;
+}
+
+/* NAVBAR */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:20px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,.25);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  z-index:999;
+}
+
+.logo{
+  font-size:1.4rem;
+  font-weight:800;
+  color:white;
+  letter-spacing:2px;
+  text-shadow:0 0 20px rgba(255,255,255,.35);
+}
+
+.nav-links{
+  display:flex;
+  list-style:none;
+  gap:30px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:white;
+  transition:.3s;
+  position:relative;
+  font-weight:500;
+}
+
+.nav-links a::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0%;
+  height:2px;
+  background:#59b6ff;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:#59b6ff;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+/* MENU */
+
+.menu{
+  display:none;
+  font-size:2rem;
+  cursor:pointer;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  position:fixed;
+  top:0;
+  right:-320px;
+  width:320px;
+  height:100vh;
+  background:#061423;
+  padding:100px 35px;
+  transition:.5s;
+  z-index:1000;
+  border-left:1px solid rgba(255,255,255,.08);
+}
+
+.sidebar.active{
+  right:0;
+}
+
+.sidebar a{
+  display:block;
+  margin:20px 0;
+  color:white;
+  text-decoration:none;
+  transition:.3s;
+}
+
+.sidebar a:hover{
+  color:#59b6ff;
+  transform:translateX(10px);
+}
+
+/* SECTION */
+
+section{
+  padding:120px 7%;
+}
+
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ID CARD */
+
+.id-card{
+  width:100%;
+  max-width:1500px;
+  min-height:720px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:45px;
+  overflow:hidden;
+  backdrop-filter:blur(18px);
+  box-shadow:
+  0 0 40px rgba(89,182,255,.15),
+  0 0 80px rgba(89,182,255,.08);
+}
+
+/* LEFT */
+
+.card-left{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.card-left::before{
+  content:'';
+  position:absolute;
+  width:500px;
+  height:500px;
+  background:#59b6ff;
+  filter:blur(140px);
+  opacity:.18;
+  border-radius:50%;
+}
+
+.card-left img{
+  width:75%;
+  max-width:480px;
+  border-radius:35px;
+  object-fit:cover;
+  border:4px solid #59b6ff;
+  box-shadow:
+  0 0 40px rgba(89,182,255,.5),
+  0 0 80px rgba(89,182,255,.25);
+  z-index:2;
+  animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-18px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
+}
+
+/* RIGHT */
+
+.card-right{
+  padding:70px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.card-right h1{
+  font-size:5rem;
+  line-height:1.1;
+  margin-bottom:20px;
+}
+
+.name-white{
+  color:white;
+  text-shadow:0 0 18px rgba(255,255,255,.3);
+}
+
+.card-right h3{
+  color:#59b6ff;
+  margin-bottom:25px;
+  letter-spacing:2px;
+  text-shadow:0 0 20px #59b6ff;
+}
+
+.card-right p{
+  line-height:2;
+  color:#d7e5f3;
+  margin-bottom:35px;
+  font-size:1.05rem;
+}
+
+.card-info{
+  display:flex;
+  flex-wrap:wrap;
+  gap:40px;
+  margin-bottom:35px;
+}
+
+.card-info div{
+  display:flex;
+  flex-direction:column;
+}
+
+.card-info b{
+  color:white;
+  margin-bottom:8px;
+}
+
+.card-info a{
+  color:#7bc7ff;
+  text-decoration:none;
+  transition:.3s;
+}
+
+.card-info a:hover{
+  color:white;
+}
+
+/* BUTTON */
+
+.hero-btn{
+  padding:17px 38px;
+  border-radius:50px;
+  background:#59b6ff;
+  color:white;
+  text-decoration:none;
+  width:max-content;
+  font-weight:600;
+  transition:.4s;
+  box-shadow:0 0 30px rgba(89,182,255,.35);
+}
+
+.hero-btn:hover{
+  transform:translateY(-8px) scale(1.03);
+  background:#78c8ff;
+}
+
+/* TITLE */
+
+.title{
+  text-align:center;
+  font-size:3rem;
+  margin-bottom:70px;
+  color:#59b6ff;
+  text-shadow:0 0 20px rgba(89,182,255,.7);
+}
+
+/* GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+  gap:35px;
+}
+
+/* CARD */
+
+.card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:28px;
+  overflow:hidden;
+  transition:.5s;
+  backdrop-filter:blur(12px);
+  cursor:pointer;
+  position:relative;
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.02);
+  box-shadow:
+  0 0 35px rgba(89,182,255,.25),
+  0 0 60px rgba(89,182,255,.1);
+}
+
+.card img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+}
+
+/* SLIDER */
+
+.slider{
+  position:relative;
+  overflow:hidden;
+}
+
+.slider img{
+  display:none;
+}
+
+.slider img.active{
+  display:block;
+}
+
+.slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,.4);
+  color:white;
+  border:none;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  cursor:pointer;
+  z-index:5;
+}
+
+.prev{
+  left:12px;
+}
+
+.next{
+  right:12px;
+}
+
+.content{
+  padding:25px;
+}
+
+.content h3{
+  color:#59b6ff;
+  margin-bottom:12px;
+  font-size:1.4rem;
+}
+
+.content p{
+  color:#d7e5f3;
+  line-height:1.8;
+}
+
+/* LIGHTBOX */
+
+.lightbox{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+
+.lightbox img{
+  width:90%;
+  max-width:900px;
+  border-radius:20px;
+}
+
+.lightbox.active{
+  display:flex;
+}
+
+/* CONTACT */
+
+.contact{
+  max-width:800px;
+  margin:auto;
+  padding:45px;
+  border-radius:30px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(12px);
+  text-align:center;
+}
+
+.contact p{
+  margin:25px 0;
+  font-size:1.1rem;
+  line-height:1.8;
+}
+
+.contact a{
+  color:#7bc7ff;
+  text-decoration:none;
+}
+
+.contact a:hover{
+  color:white;
+}
+
+/* FOOTER */
+
+footer{
+  padding:40px;
+  text-align:center;
+  color:#9db6cb;
+}
+
+/* SCROLL EFFECT */
+
+.fade{
+  opacity:0;
+  transform:
+  scale(.7)
+  rotate(5deg)
+  translateY(100px);
+
+  filter:blur(12px);
+
+  transition:
+  transform .9s cubic-bezier(.22,1,.36,1),
+  opacity .9s ease,
+  filter .9s ease;
+}
+
+.fade.show{
+  opacity:1;
+  transform:
+  scale(1)
+  rotate(0deg)
+  translateY(0);
+
+  filter:blur(0);
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .menu{
+    display:block;
+  }
+
+  .id-card{
+    grid-template-columns:1fr;
+    min-height:auto;
+  }
+
+  .card-right{
+    padding:40px 30px;
+    text-align:center;
+  }
+
+  .card-right h1{
+    font-size:2.7rem;
+  }
+
+  .card-info{
+    justify-content:center;
+  }
+
+  .hero-btn{
+    margin:auto;
+  }
+
+  .card-left{
+    padding-top:40px;
+  }
+
+  .card-left img{
+    width:80%;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+
+<div class="bg-animation">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<div class="lines">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+FAHRI ANDRIAN SAPUTRA
+</div>
+
+<ul class="nav-links">
+
+<li><a href="#home">Home</a></li>
+<li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#project">Project</a></li>
+<li><a href="#contact">Kontak</a></li>
+
+</ul>
+
+<div class="menu" onclick="toggleMenu()">☰</div>
+
+</nav>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar" id="sidebar">
+
+<a href="#home" onclick="closeMenu()">Home</a>
+<a href="#portfolio" onclick="closeMenu()">Portfolio</a>
+<a href="#project" onclick="closeMenu()">Project</a>
+<a href="#contact" onclick="closeMenu()">Kontak</a>
+
+<br><br>
+
+<p style="line-height:1.9;color:#a9c7df;">
+Website portfolio modern cinematic dengan
+animasi neon biru, smooth scroll,
+glassmorphism, dan preview gambar modern.
+</p>
+
+</div>
+
+<!-- HOME -->
+
+<section class="hero fade" id="home">
+
+<div class="id-card">
+
+<div class="card-left">
+
+<img src="lv_0_20260510163320.jpg">
+
+</div>
+
+<div class="card-right">
+
+<h1>
+
+<span class="name-white">FAHRI</span><br>
+<span class="name-white">ANDRIAN</span><br>
+<span class="name-white">SAPUTRA</span>
+
+</h1>
+
+<h3>JURUSAN BISNIS DIGITAL</h3>
+
+<p>
+Fresh graduate SMK jurusan Bisnis Digital
+yang memiliki minat di bidang editing foto,
+desain visual modern,
+dan pengembangan website portfolio Simple.
+</p>
+
+<div class="card-info">
+
+<div>
+
+<b>Email</b>
+
+<a href="mailto:fahriiandriansaputra@gmail.com">
+fahriiandriansaputra@gmail.com
+</a>
+
+</div>
+
+<div>
+
+<b>WhatsApp</b>
+
+<a href="https://wa.me/6287895917725" target="_blank">
++6287895917725
+</a>
+
+</div>
+
+</div>
+
+<a href="#portfolio" class="hero-btn">
+View Portfolio
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PORTFOLIO -->
+
+<section class="fade" id="portfolio">
+
+<h2 class="title">
+Portfolio
+</h2>
+
+<div class="grid">
+
+<!-- CV -->
+
+<div class="card" onclick="previewImage('file_00000000ddfc7206b9137c28044b23b2.png')">
+
+<img src="file_00000000ddfc7206b9137c28044b23b2.png">
+
+<div class="content">
+
+<h3>Desain CV</h3>
+
+<p>
+CV modern dengan konsep clean,
+elegan, dan profesional.
+</p>
+
+</div>
+
+</div>
+
+<!-- SLIDER -->
+
+<div class="card">
+
+<div class="slider">
+
+<img src="Proyek Baru [7F0C44F].png" class="active">
+<img src="lv_0_20260510163320.jpg">
+
+<button class="slider-btn prev" onclick="prevSlide(event)">❮</button>
+<button class="slider-btn next" onclick="nextSlide(event)">❯</button>
+
+</div>
+
+<div class="content">
+
+<h3>Editing Foto</h3>
+
+<p>
+Hasil editing before after menggunakan
+retouch dan cinematic color grading.
+</p>
+
+</div>
+
+</div>
+
+<!-- PKL -->
+
+<div class="card" onclick="previewImage('IMG_20250718_130542_060.jpg')">
+
+<img src="IMG_20250718_130542_060.jpg">
+
+<div class="content">
+
+<h3>Dokumentasi PKL</h3>
+
+<p>
+Pengalaman PKL di bidang retail,
+pelayanan pelanggan,
+dan penataan produk.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PROJECT -->
+
+<section class="fade" id="project">
+
+<h2 class="title">
+Project Website
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="content">
+
+<h3>Portfolio HTML</h3>
+
+<p>
+Website portfolio cinematic menggunakan
+HTML, CSS, dan JavaScript
+dengan animasi modern dan smooth scrolling.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="content">
+
+<h3>Fitur Website</h3>
+
+<p>
+• Smooth animation 120hz<br>
+• Neon blue effect<br>
+• Glassmorphism UI<br>
+• Preview image<br>
+• Before after slider<br>
+• Responsive mobile
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="content">
+
+<h3>Tampilan Modern</h3>
+
+<p>
+Background animasi garis bergerak,
+lingkaran neon berputar,
+serta efek cinematic modern.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="fade" id="contact">
+
+<h2 class="title">
+Kontak
+</h2>
+
+<div class="contact">
+
+<p>
+
+<b>Email</b><br>
+
+<a href="mailto:fahriiandriansaputra@gmail.com?subject=Halo Fahri&body=Halo saya ingin menghubungi anda">
+fahriiandriansaputra@gmail.com
+</a>
+
+</p>
+
+<p>
+
+<b>WhatsApp</b><br>
+
+<a href="https://wa.me/6287895917725?text=Halo%20Fahri%20saya%20ingin%20menghubungi%20anda" target="_blank">
++6287895917725
+</a>
+
+</p>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+© 2026 Fahri Andrian Saputra
+
+</footer>
+
+<!-- LIGHTBOX -->
+
+<div class="lightbox" id="lightbox" onclick="closePreview()">
+
+<img id="preview">
+
+</div>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+/* MENU */
+
+function toggleMenu(){
+
+document
+.getElementById('sidebar')
+.classList
+.toggle('active');
+
+}
+
+function closeMenu(){
+
+document
+.getElementById('sidebar')
+.classList
+.remove('active');
+
+}
+
+/* SCROLL ANIMATION */
+
+const fades =
+document.querySelectorAll('.fade');
+
+function showFade(){
+
+fades.forEach(fade=>{
+
+const top =
+fade.getBoundingClientRect().top;
+
+if(top < window.innerHeight - 80){
+
+fade.classList.add('show');
+
+}
+
+});
+
+}
+
+window.addEventListener('scroll',showFade);
+
+window.addEventListener('load',showFade);
+
+/* IMAGE PREVIEW */
+
+function previewImage(src){
+
+document
+.getElementById('preview')
+.src = src;
+
+document
+.getElementById('lightbox')
+.classList
+.add('active');
+
+}
+
+function closePreview(){
+
+document
+.getElementById('lightbox')
+.classList
+.remove('active');
+
+}
+
+/* SLIDER */
+
+function nextSlide(event){
+
+event.stopPropagation();
+
+const slider =
+event.target.parentElement;
+
+const images =
+slider.querySelectorAll('img');
+
+let current = 0;
+
+images.forEach((img,index)=>{
+
+if(img.classList.contains('active')){
+
+current = index;
+
+img.classList.remove('active');
+
+}
+
+});
+
+images[(current + 1) % images.length]
+.classList.add('active');
+
+}
+
+function prevSlide(event){
+
+event.stopPropagation();
+
+const slider =
+event.target.parentElement;
+
+const images =
+slider.querySelectorAll('img');
+
+let current = 0;
+
+images.forEach((img,index)=>{
+
+if(img.classList.contains('active')){
+
+current = index;
+
+img.classList.remove('active');
+
+}
+
+});
+
+images[
+(current - 1 + images.length)
+% images.length
+].classList.add('active');
+
+}
+
+</script>
+
+</body>
+</html>
